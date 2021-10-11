@@ -1,0 +1,70 @@
+@startuml
+
+class Zimmer{
+    nummer: int
+    personen: int
+    kategorie: Kategorie
+}
+
+class Gast{
+    kundennr: int
+    name: String
+    adresse: String
+}
+
+class Buchung{
+    hotelzimmer: Hotelzimmer
+    gast: Gast
+    von: LocalDate
+    bis: LocalDate
+}
+
+class Kategorie{
+    id: int
+    bezeichnung: String
+}
+class Mitarbeiter{
+    -svnr: String
+    -name: String
+    -adresse: String
+}
+
+class Betreuer{
+    betreuer: Betreuer
+    fachgebiet String
+}
+class Kunde{
+    -kundennr: int
+    -name: String
+    -adresse: String
+}
+
+class Leistungspaket{
+    bezeichnung: String
+    preis: int
+    paket: String
+}
+
+class LeistungspaketKauf{
+    -bezeichnung: String
+    -preis: int
+    -anzahl: int
+}
+
+class LuxuspaketKauf{
+    luxusPaket: Luxuspaket
+    leistungspaket: Leistungspaket
+}
+
+Kategorie "*"--> "1" Zimmer
+Zimmer "1"-->"*" Buchung
+Zimmer "1"-->"*" Mitarbeiter
+Buchung "1"<--"*" Gast
+Buchung "1"-->"1" Leistungspaket
+Leistungspaket "1"-->"1" LeistungspaketKauf
+Leistungspaket "1"-->"1" LuxuspaketKauf
+Leistungspaket "1"-->"1" Betreuer
+Mitarbeiter "1"-->"1" Betreuer
+Mitarbeiter "*"-->"1" Kunde
+
+@enduml
