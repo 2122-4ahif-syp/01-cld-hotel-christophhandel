@@ -1,0 +1,56 @@
+@startuml
+class Vorstellung
+class Film
+class Kino
+class Ticket
+class Saal
+class Sessel
+class Schauspieler
+class Regisseur
+
+Vorstellung "many" -left- "one" Kino
+Vorstellung "many" -down- "one" Saal
+Vorstellung -up- "one" Beginn
+Vorstellung  "many" -right- "one" Film
+Vorstellung "one" -left- "many" Ticket
+
+Film "many" -right- "many" Regisseur
+Film "many" -down- "many" Schauspieler
+Film -up- "one" Art
+
+Saal "one" --> "many" Sessel
+
+class Sessel{
+Sitzpreis
+Sitznummer
+Sitzreihe
+}
+
+class Film{
+Titel
+Land
+Herstellungsjahr
+ID
+Sprache
+Verleih
+Dauer
+}
+
+class Regisseur{
+Vorname
+Nachname
+Geburtsdatum
+Nationalität
+Todesdatum
+}
+
+class Schauspieler{
+Vorname
+Nachname
+Geburtsdatum
+Nationalität
+Todesdatum
+Bemerkung
+}
+
+@enduml
